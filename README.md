@@ -1,6 +1,6 @@
 # worker-pool
 
-[![CI](https://github.com/philiprehberger/kt-worker-pool/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/kt-worker-pool/actions/workflows/publish.yml)
+[![Tests](https://github.com/philiprehberger/kt-worker-pool/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/kt-worker-pool/actions/workflows/publish.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/com.philiprehberger/worker-pool)](https://central.sonatype.com/artifact/com.philiprehberger/worker-pool)
 [![License](https://img.shields.io/github/license/philiprehberger/kt-worker-pool)](LICENSE)
 
@@ -11,9 +11,7 @@ Coroutine-based worker pool for parallel batch processing with backpressure.
 ### Gradle (Kotlin DSL)
 
 ```kotlin
-dependencies {
-    implementation("com.philiprehberger:worker-pool:0.1.2")
-}
+implementation("com.philiprehberger:worker-pool:0.1.3")
 ```
 
 ### Maven
@@ -22,7 +20,7 @@ dependencies {
 <dependency>
     <groupId>com.philiprehberger</groupId>
     <artifactId>worker-pool</artifactId>
-    <version>0.1.2</version>
+    <version>0.1.3</version>
 </dependency>
 ```
 
