@@ -1,9 +1,8 @@
 # worker-pool
 
 [![Tests](https://github.com/philiprehberger/kt-worker-pool/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/kt-worker-pool/actions/workflows/publish.yml)
-[![Maven Central](https://img.shields.io/maven-central/v/com.philiprehberger/worker-pool)](https://central.sonatype.com/artifact/com.philiprehberger/worker-pool)
-[![License](https://img.shields.io/github/license/philiprehberger/kt-worker-pool)](LICENSE)
-[![Sponsor](https://img.shields.io/badge/sponsor-GitHub%20Sponsors-ec6cb9)](https://github.com/sponsors/philiprehberger)
+[![Maven Central](https://img.shields.io/maven-central/v/com.philiprehberger/worker-pool.svg)](https://central.sonatype.com/artifact/com.philiprehberger/worker-pool)
+[![Last updated](https://img.shields.io/github/last-commit/philiprehberger/kt-worker-pool)](https://github.com/philiprehberger/kt-worker-pool/commits/main)
 
 Coroutine-based worker pool for parallel batch processing with backpressure.
 
@@ -55,6 +54,24 @@ val sizes = urls.parallelMap(concurrency = 10) { fetchSize(it) }
 ./gradlew build
 ```
 
+## Support
+
+If you find this project useful:
+
+⭐ [Star the repo](https://github.com/philiprehberger/kt-worker-pool)
+
+🐛 [Report issues](https://github.com/philiprehberger/kt-worker-pool/issues?q=is%3Aissue+is%3Aopen+label%3Abug)
+
+💡 [Suggest features](https://github.com/philiprehberger/kt-worker-pool/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
+
+❤️ [Sponsor development](https://github.com/sponsors/philiprehberger)
+
+🌐 [All Open Source Projects](https://philiprehberger.com/open-source-packages)
+
+💻 [GitHub Profile](https://github.com/philiprehberger)
+
+🔗 [LinkedIn Profile](https://www.linkedin.com/in/philiprehberger)
+
 ## License
 
-MIT
+[MIT](LICENSE)
