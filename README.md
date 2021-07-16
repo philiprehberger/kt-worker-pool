@@ -11,7 +11,7 @@ Coroutine-based worker pool for parallel batch processing with backpressure.
 ### Gradle (Kotlin DSL)
 
 ```kotlin
-implementation("com.philiprehberger:worker-pool:0.1.3")
+implementation("com.philiprehberger:worker-pool:0.2.0")
 ```
 
 ### Maven
@@ -20,7 +20,7 @@ implementation("com.philiprehberger:worker-pool:0.1.3")
 <dependency>
     <groupId>com.philiprehberger</groupId>
     <artifactId>worker-pool</artifactId>
-    <version>0.1.3</version>
+    <version>0.2.0</version>
 </dependency>
 ```
 
@@ -34,6 +34,14 @@ val results = workerPool<String, Int>(concurrency = 5) {
     onProgress { done, total -> println("$done/$total") }
 }
 
+// With per-task timeout
+import kotlin.time.Duration.Companion.seconds
+
+val results = workerPool<String, Int>(concurrency = 5, timeout = 10.seconds) {
+    urls.forEach { url -> submit(url) { fetchSize(it) } }
+    onError { url, e -> println("Failed: $url — ${e.message}") }
+}
+
 // Simple list parallel map
 val sizes = urls.parallelMap(concurrency = 10) { fetchSize(it) }
 ```
@@ -42,7 +50,7 @@ val sizes = urls.parallelMap(concurrency = 10) { fetchSize(it) }
 
 | Function / Class | Description |
 |------------------|-------------|
-| `workerPool(concurrency) { }` | Process tasks with bounded parallelism |
+| `workerPool(concurrency, timeout?) { }` | Process tasks with bounded parallelism and optional per-task timeout |
 | `WorkerPoolScope.submit(input, task)` | Submit a task |
 | `WorkerPoolScope.onProgress { completed, total -> }` | Progress callback |
 | `List<T>.parallelMap(concurrency, transform)` | Parallel list mapping |

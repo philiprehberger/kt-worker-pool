@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.2.0] - 2026-04-05
+
+- Add `timeout: Duration?` parameter to `workerPool` for per-task timeout support
+- Tasks exceeding the timeout are cancelled with `TimeoutCancellationException`, triggering `onError`
+
 ## 0.1.4 (2026-03-31)
 
 - Standardize README to 3-badge format with emoji Support section

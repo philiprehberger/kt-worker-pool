@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.philiprehberger"
-version = project.findProperty("version") as String? ?: "0.1.0"
+version = project.findProperty("version") as String? ?: "0.2.0"
 
 repositories {
     mavenCentral()
