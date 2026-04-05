@@ -2,18 +2,23 @@ package com.philiprehberger.workerpool
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.sync.Semaphore
+import kotlin.time.Duration
 
 /** Process tasks in parallel with bounded concurrency. Returns results in submission order. */
 public suspend fun <T, R> workerPool(
     concurrency: Int = 10,
+    timeout: Duration? = null,
     block: suspend WorkerPoolScope<T, R>.() -> Unit,
 ): List<R> {
-    val scope = WorkerPoolScope<T, R>(concurrency)
+    val scope = WorkerPoolScope<T, R>(concurrency, timeout)
     scope.block()
     return scope.collectResults()
 }
 
-public class WorkerPoolScope<T, R>(private val concurrency: Int) {
+public class WorkerPoolScope<T, R>(
+    private val concurrency: Int,
+    private val timeout: Duration? = null,
+) {
     private val tasks = mutableListOf<Pair<T, suspend (T) -> R>>()
     private var progressCallback: ((Int, Int) -> Unit)? = null
     private var errorCallback: ((T, Throwable) -> Unit)? = null
@@ -32,7 +37,11 @@ public class WorkerPoolScope<T, R>(private val concurrency: Int) {
             async {
                 semaphore.acquire()
                 try {
-                    val result = task(input)
+                    val result = if (timeout != null) {
+                        withTimeout(timeout) { task(input) }
+                    } else {
+                        task(input)
+                    }
                     completed++
                     progressCallback?.invoke(completed, tasks.size)
                     result
